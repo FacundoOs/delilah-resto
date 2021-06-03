@@ -66,7 +66,7 @@ function logIn(req, res) {
       const userLogged = jwt.sign(usuario, firma);
 
       res.json({
-        mensaje: "Usuario autenticado correctamente",
+        message: "Usuario autenticado correctamente",
         jwt: userLogged,
       });
     }

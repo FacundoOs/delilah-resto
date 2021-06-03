@@ -1,6 +1,6 @@
 const conexion = require("../conexion");
 const jwt = require("jsonwebtoken");
-const firma = "Acamica 2020";
+const firma = "DelilahResto";
 
 const validarToken = (token) => {
   try {
@@ -12,6 +12,10 @@ const validarToken = (token) => {
 };
 
 const definirRol = (req, res, next) => {
+  if (!req.headers["authorization"]) {
+    res.json({ message: "Tiene que loguearse primero" });
+    return;
+  }
   const token = req.headers["authorization"].replace("Bearer ", "");
   const decodedUser = validarToken(token);
 
@@ -19,7 +23,7 @@ const definirRol = (req, res, next) => {
     req.params.usuario = decodedUser;
     next();
   } else {
-    res.json({ mensaje: "Invalido" });
+    res.json({ message: "Invalido" });
   }
 };
 

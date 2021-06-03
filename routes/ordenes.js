@@ -12,9 +12,9 @@ function listaOrdenes(req, res) {
         INNER JOIN usuarios ON ordenes.usuario_id = usuarios.id`;
   } else {
     sql = `SELECT * FROM ordenes_detalles
-        INNER JOIN ordenes ON ordenes_detales.orden_id = ordenes.id
+        INNER JOIN ordenes ON ordenes_detalles.orden_id = ordenes.id
         INNER JOIN productos ON ordenes_detalles.producto_id = productos.id
-        INNER JOIN users ON ordenes.user_id = usuarios.id
+        INNER JOIN usuarios ON ordenes.usuario_id = usuarios.id
         WHERE usuario_id = ${usuarioId}`;
   }
   conexion.query(sql, (err, ordenes) => {
@@ -51,6 +51,7 @@ function nuevaOrden(req, res) {
       console.log(err);
       res.status(500).json({ message: "Error Interno" });
     } else {
+      console.log(orden)
       orden.detalles.forEach((element) => {
         const ordenDetalle = `INSERT INTO delilah_resto.ordenes_detalles(orden_id, producto_id, cantidad) VALUES (${ordenes.insertId}, ${element.producto_id}, '${element.cantidad}')`;
 

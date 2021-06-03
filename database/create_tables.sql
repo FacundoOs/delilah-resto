@@ -12,7 +12,7 @@ CREATE TABLE delilah_resto.usuarios(
 CREATE TABLE delilah_resto.productos(
 	id INT AUTO_INCREMENT NOT NULL,
   nombre_producto VARCHAR(255) NOT NULL,
-  precio FLOAT(4,2) NOT NULL,
+  precio FLOAT(5,2) NOT NULL,
   stock BOOLEAN NOT NULL DEFAULT TRUE, 
   img_url VARCHAR(255) NOT NULL,
   categoria VARCHAR(255),

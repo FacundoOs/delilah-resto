@@ -42,6 +42,15 @@ app.post("/ordenes", definirRol, validarRol, nuevaOrden);
 app.put("/ordenes/:id", definirRol, validarRol, actualizarOrden);
 app.delete("/ordenes/:id", definirRol, validarRol, borrarOrden);
 
+
+//No route matches
+app.use((req, res, next) => {
+  res.status(404).send({
+  status: 404,
+  error: "Not found"
+  })
+ })
+
 // Starting server
 app.listen(PORT, function () {
   console.log(`App listening on PORT: ${PORT}`);
