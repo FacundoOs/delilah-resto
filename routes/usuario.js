@@ -1,12 +1,12 @@
 const conexion = require("../conexion");
 const jwt = require("jsonwebtoken");
 
-const firma = "Acamica 2020";
+const firma = "DelilahResto";
 
 function listaUsuarios(req, res) {
   let sql;
-  let usuarioRol = req.params.rol.es_admin;
-  let usuarioId = req.params.rol.id;
+  const usuarioRol = req.params.rol.es_admin;
+  const usuarioId = req.params.rol.id;
 
   if (usuarioRol == 1) {
     console.log(`Es admin`);
@@ -54,16 +54,16 @@ function crearUsuario(req, res) {
 }
 
 function logIn(req, res) {
-  let usuario = req.body;
-  let token = jwt.sign(usuario.password, firma);
-  let sql = `SELECT password FROM delilah_resto.usuarios WHERE usuarios.password = '${token}' AND usuarios.usuario = '${usuario.usuario}'`;
+  const usuario = req.body;
+  const token = jwt.sign(usuario.password, firma);
+  const sql = `SELECT password FROM delilah_resto.usuarios WHERE usuarios.password = '${token}' AND usuarios.usuario = '${usuario.usuario}'`;
 
   conexion.query(sql, function (err, passwords) {
     if (err || passwords.length == 0) {
       res.status(500).json({ message: "Usuario no exite o password incorrecto" });
       return;
     } else {
-      let userLogged = jwt.sign(usuario, firma);
+      const userLogged = jwt.sign(usuario, firma);
 
       res.json({
         mensaje: "Usuario autenticado correctamente",
@@ -76,5 +76,5 @@ function logIn(req, res) {
 module.exports = {
   listaUsuarios,
   crearUsuario,
-  logIn
+  logIn,
 };

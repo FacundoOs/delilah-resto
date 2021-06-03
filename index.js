@@ -25,6 +25,7 @@ const {
   actualizarProducto,
   borrarProducto,
 } = require("./routes/productos");
+const { listaOrdenes, nuevaOrden, actualizarOrden, borrarOrden } = require("./routes/ordenes");
 
 // Routes
 app.get("/usuarios", definirRol, validarRol, listaUsuarios);
@@ -35,6 +36,11 @@ app.get("/productos", seleccionProductos);
 app.post("/productos", definirRol, validarRol, crearProducto);
 app.put("/productos/:id", definirRol, validarRol, actualizarProducto);
 app.delete("/productos/:id", definirRol, validarRol, borrarProducto);
+
+app.get("/ordenes", definirRol, validarRol, listaOrdenes);
+app.post("/ordenes", definirRol, validarRol, nuevaOrden);
+app.put("/ordenes/:id", definirRol, validarRol, actualizarOrden);
+app.delete("/ordenes/:id", definirRol, validarRol, borrarOrden);
 
 // Starting server
 app.listen(PORT, function () {

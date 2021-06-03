@@ -12,7 +12,6 @@ const validarToken = (token) => {
 };
 
 const definirRol = (req, res, next) => {
-  //pasar el token por headers, crear uno con nombre 'token' y pasarle el token en values
   const token = req.headers["authorization"].replace("Bearer ", "");
   const decodedUser = validarToken(token);
 

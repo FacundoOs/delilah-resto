@@ -6,7 +6,7 @@ function seleccionProductos(req, res) {
   conexion.query(sql, function (err, productos) {
     if (err) {
       console.log(err);
-      res.status(500).json({ error: "Internal error" });
+      res.status(500).json({ error: "Error interno" });
     } else {
       res.send(productos);
     }
@@ -83,7 +83,7 @@ function borrarProducto(req, res) {
   conexion.query(sql, function (err, producto) {
     if (err) {
       console.log(err);
-      res.status(500).json({ error: "Internal Error" });
+      res.status(500).json({ error: "Error interno" });
     } else {
       res.status(200).json({ message: "producto eliminado", producto });
     }
